@@ -6,7 +6,8 @@ public class Ground_NPC_PCGF : MonoBehaviour
 {
     [Header("Basic Value")]
     public int hp = 1;
-    public float speed = 2;
+    public float speed = 1;
+    public float exitAlphaSpeed = 0.75f;
     public float exitSpeed = 1.5f;
     public bool isSaved = false;
     public float facingDirection = -1;
@@ -21,6 +22,9 @@ public class Ground_NPC_PCGF : MonoBehaviour
     public Vector2 patrol_Left;
     public Vector2 patrol_Right;
 
+    public GameObject score500;
+    public GameObject score2000;
+
     void Awake()
     {
         m_Transform = gameObject.GetComponent<Transform>();
@@ -31,6 +35,9 @@ public class Ground_NPC_PCGF : MonoBehaviour
 
         patrol_Left = m_Transform.Find("Patrol_Left").position;
         patrol_Right = m_Transform.Find("Patrol_Right").position;
+
+        score500 = Resources.Load<GameObject>("Prefabs/Score/Score500");
+        score2000 = Resources.Load<GameObject>("Prefabs/Score/Score2000");
     }
 
     private void Damage(int damage)

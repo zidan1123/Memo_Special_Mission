@@ -25,4 +25,12 @@ public class Ground_NPC_GiftArea : MonoBehaviour
             ground_NPC_FSM.StateTransition(Ground_NPC_State.Gift);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (ground_NPC_PCGF.isSaved && collision.gameObject.tag == "Player" && ground_NPC_PCGF.m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Ground_NPC_Run"))
+        {
+            ground_NPC_FSM.StateTransition(Ground_NPC_State.Gift);
+        }
+    }
 }

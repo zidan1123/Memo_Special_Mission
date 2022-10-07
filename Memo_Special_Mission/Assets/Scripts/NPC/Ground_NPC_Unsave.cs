@@ -114,6 +114,7 @@ public class Ground_NPC_Run : IState
 
 public class Ground_NPC_Gift : IState
 {
+    private bool isGift = false;
     private float giftTimer;
 
     private Ground_NPC_FSM ground_NPC_FSM;
@@ -134,6 +135,17 @@ public class Ground_NPC_Gift : IState
     {
         giftTimer += Time.deltaTime;
 
+        if (!isGift && giftTimer >= ground_NPC_PCGF.m_Animator.GetCurrentAnimatorStateInfo(0).length / 2) 
+        {
+            isGift = true;
+
+            int temp = Random.Range(0, 2);
+            if(temp == 0)
+                GameObject.Instantiate<GameObject>(ground_NPC_PCGF.score500, ground_NPC_PCGF.m_Transform.position, Quaternion.identity);
+            else
+                GameObject.Instantiate<GameObject>(ground_NPC_PCGF.score2000, ground_NPC_PCGF.m_Transform.position, Quaternion.identity);
+        }
+
         if (giftTimer >= ground_NPC_PCGF.m_Animator.GetCurrentAnimatorStateInfo(0).length)
         {
             ground_NPC_FSM.StateTransition(Ground_NPC_State.Exit);
@@ -142,6 +154,8 @@ public class Ground_NPC_Gift : IState
 
     public void OnExit()
     {
+        isGift = false;
+
         giftTimer = 0;
     }
 }
@@ -168,11 +182,11 @@ public class Ground_NPC_Exit : IState
 
     public void OnUpdate()
     {
-        ground_NPC_PCGF.m_Transform.position = Vector2.MoveTowards(ground_NPC_PCGF.m_Transform.position, exit_Position, ground_NPC_PCGF.speed * Time.deltaTime);
+        ground_NPC_PCGF.m_Transform.position = Vector2.MoveTowards(ground_NPC_PCGF.m_Transform.position, exit_Position, ground_NPC_PCGF.exitSpeed * Time.deltaTime);
         
         if (ground_NPC_PCGF.m_SpriteRenderer.color.a > 0)
         {
-            ground_NPC_PCGF.m_SpriteRenderer.color = new Color(1, 1, 1, ground_NPC_PCGF.m_SpriteRenderer.color.a - ground_NPC_PCGF.exitSpeed * Time.deltaTime);
+            ground_NPC_PCGF.m_SpriteRenderer.color = new Color(1, 1, 1, ground_NPC_PCGF.m_SpriteRenderer.color.a - ground_NPC_PCGF.exitAlphaSpeed * Time.deltaTime);
         }
 
         if (ground_NPC_PCGF.m_SpriteRenderer.color.a <= 0)

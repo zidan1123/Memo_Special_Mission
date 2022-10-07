@@ -16,13 +16,13 @@ TagManager:
   - Player
   - Bomb
   - NPC
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Score
+  - OnlyPlayerNotCollision
+  - MachineGunPlatform
+  - SkyEnemy
+  - EnemyBullet
+  - CamareBorder
+  - Barrel
   - 
   - 
   - 
@@ -43,4 +43,22 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: NPC
+    uniqueID: 3031919407
+    locked: 0
+  - name: Score
+    uniqueID: 372565765
+    locked: 0
+  - name: Monster
+    uniqueID: 1673034053
+    locked: 0
+  - name: Player
+    uniqueID: 655094677
+    locked: 0
+  - name: Boss
+    uniqueID: 638484839
+    locked: 0
+  - name: Effect
+    uniqueID: 310153303
     locked: 0
