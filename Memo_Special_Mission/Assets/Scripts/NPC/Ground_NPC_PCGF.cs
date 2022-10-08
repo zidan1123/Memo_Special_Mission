@@ -42,6 +42,7 @@ public class Ground_NPC_PCGF : MonoBehaviour
 
     private void Damage(int damage)
     {
+        Score.Instance.AddScore(100);
         this.hp -= damage;
     }
 

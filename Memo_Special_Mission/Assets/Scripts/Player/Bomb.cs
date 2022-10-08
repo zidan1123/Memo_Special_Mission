@@ -41,10 +41,10 @@ public class Bomb : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_Transform.position, bombRadius);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if(colliders[i].gameObject.layer == 7 || collision.gameObject.layer == 14
-                 || collision.gameObject.layer == 17)  //Monster/SkyEnemy/Barrel
+            if(colliders[i].gameObject.layer == 7 || colliders[i].gameObject.layer == 14 
+                || colliders[i].gameObject.layer == 17)  //Monster/SkyEnemy/Barrel
             {
-                colliders[i].SendMessageUpwards("Damage", bombAttack);
+                colliders[i].SendMessage("Damage", bombAttack);
             }
         }
     }
@@ -58,4 +58,10 @@ public class Bomb : MonoBehaviour
     //        Destroy(gameObject);
     //    }
     //}
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(m_Transform.position, bombRadius);
+    }
 }
